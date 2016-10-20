@@ -1,6 +1,7 @@
 var express    = require("express");
 var app        = express();
 var mandrill = require('node-mandrill')('wOw8h_wydGj7qFRkjKJLNQ');
+// var results_template = require('./views/results.ejs');
 
 // var mandrill = require('mandrill-api/mandrill');
 // var mandrill_client = new mandrill.Mandrill('wOw8h_wydGj7qFRkjKJLNQ');
@@ -8,47 +9,50 @@ var mandrill = require('node-mandrill')('wOw8h_wydGj7qFRkjKJLNQ');
 app.set("views", __dirname + "/views");
 app.set("view engine", "ejs");
 
+
 mandrill('/messages/send', {
+
     message: {
+
         to: [{email: 'paul@stampede.co.uk', name: 'Paul Crosby'}],
         from_email: 'paul@stampede.co.uk',
         subject: "We are getting there!",
-        html:"results"
-//         html: "<html>"+
-// '  <head>'+
-// '    <title>Results</title>'+
-// '      <script type="text/javascript" src="app.js"></script>'+
-// '      <link rel="stylesheet" type="text/css" href="style.css">'+
-// '  </head>'+
-// '  <body>'+
-// '  '+
-// '    <h1>test</h1>'+
-// '      <h2>Hello *|FNAME|*</h2>'+
-// '      <h6>*|EMAIL|*</h6>'+
-// '      <div class="finalised">'+
-// '        <p>Well done , you smashed it!'+
-// '          <ol>'+
-// '            <li>Winner '+
-// '            <br>'+
-// '            <a href>https://stampede.co.uk</a></li>'+
-// '            <li>Your place '+
-// '            <br>'+
-// '            <a href>https://stampede.co.uk</a></li>'+
-// '            <li>Check out the webpage for the splits '+
-// '            <br>'+
-// '            <a href>https://stampede.co.uk</a></li>'+
-// '          </ol>'+
-// '        </div> '+
-// '          <p>Keep on Running</p>'+
-// '          <br>'+
-// '          <div class="greeting">'+
-// '          Regards'+
-// '          <br>'+
-// '          Stampede Team'+
-// '          </div>'+
-// '        '+
-// '  </body>'+
-// '</html>'
+      
+        html: "<html>"+
+'  <head>'+
+'    <title>Results</title>'+
+'      <script type="text/javascript" src="app.js"></script>'+
+'      <link rel="stylesheet" type="text/css" href="style.css">'+
+'  </head>'+
+'  <body>'+
+'  '+
+'    <h1>*|DATE:FORMAT|*</h1>'+
+'      <h2>Hello *|FNAME|*</h2>'+
+'      <h6>*|EMAIL|*</h6>'+
+'      <div class="finalised">'+
+'        <p>Well done , you smashed it!'+
+'          <ol>'+
+'            <li>Winner '+
+'            <br>'+
+'            <a href>https://stampede.co.uk</a></li>'+
+'            <li>Your place '+
+'            <br>'+
+'            <a href>https://stampede.co.uk</a></li>'+
+'            <li>Check out the webpage for the splits '+
+'            <br>'+
+'            <a href>https://stampede.co.uk</a></li>'+
+'          </ol>'+
+'        </div> '+
+'          <p>Keep on Running</p>'+
+'          <br>'+
+'          <div class="greeting">'+
+'          Regards'+
+'          <br>'+
+'          Stampede Team'+
+'          </div>'+
+'        '+
+'  </body>'+
+'</html>'
     }
 }, function(error, response)
 {
