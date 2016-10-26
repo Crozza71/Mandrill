@@ -8,9 +8,10 @@ var mandrill_client = new mandrill.Mandrill('wOw8h_wydGj7qFRkjKJLNQ');
 function sendMail(template_name, template_content, to_variable){
     console.log(template_name)
     console.log(template_content)
+    console.log(to_variable)
 
     var message = {
-        "subject": "New Login114 ",
+        "subject": "New Login115 ",
         "from_email": "paul@stampede.co.uk",
         "from_name": "Paul Crosby",
         "to": to_variable,
@@ -92,15 +93,15 @@ function sendMail(template_name, template_content, to_variable){
 
 }
 
-sendMail('Index', [ {"name":"Test", "content":"im here"}], [{
-                "email": "kin_bing@hotmail.com",
-                "name": "Harry Howard",
+sendMail('Results', [ ], [{
+                "email": "king_bing@hotmail.com",
+                "name": "Dave Dobbin",
                 "type": "to"
             }])
 
 
 
-
+// {"name":"header", "content":"Run",}
 
 var template_name = "Index"
 
@@ -139,7 +140,7 @@ var message = {
     "subject": "New Login114 ",
     "from_email": "paul@stampede.co.uk",
     "from_name": "Paul Crosby",
-    "to": [{
+    "recipient": [{
             "email": "king_bing@hotmail.com",
             "name": "Harry Howard",
             "type": "to"
