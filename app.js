@@ -3,7 +3,7 @@ var app        = express();
 var mandrill = require('mandrill-api/mandrill');
 var mandrill_client = new mandrill.Mandrill('wOw8h_wydGj7qFRkjKJLNQ');
 
-var template_name = "Results"
+var template_name = "Organiser-Login"
 var template_content =[
     {
         "name": "header",
@@ -12,11 +12,15 @@ var template_content =[
     },
     {
         "name": "results",
-        "content": "<p> *|FNAME|* Congratulations and Thank you for your business!You now have a login for the most prestigious Endurance Event site around!<p>"    
+        "content": "<p> *|FNAME|* Congratulations you are a winner!<p>"    
     },
     {
         "name": "welcome",
         "content": "<p>WELL DONE *|LNAME|* !<p>"    
+    },
+    {
+        "name": "login",
+        "content": "<p>Congratulations and Thank you for your business!You now have a login for the most prestigious Endurance Event site around! </p>"    
     },
     {
        "name": "greeting",
@@ -28,12 +32,12 @@ var template_content =[
 ];
 
 var message = {
-    "subject": "New Login113 ",
+    "subject": "New Login114 ",
     "from_email": "paul@stampede.co.uk",
     "from_name": "Paul Crosby",
     "to": [{
             "email": "king_bing@hotmail.com",
-            "name": "Dave Dobbin",
+            "name": "Harry Howard",
             "type": "to"
         }],
     "headers": {
@@ -55,8 +59,8 @@ var message = {
     "merge": true,
     "merge_language": "mailchimp",
     "global_merge_vars": [{
-            "name": "fname",
-            "content": ""
+            "name": "merge1",
+            "content": "<h1>MERGING</h1>"
         }],
     "merge_vars": [{
             "rcpt": "paul@stampede.co.uk",
