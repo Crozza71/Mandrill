@@ -3,19 +3,24 @@ var app        = express();
 var mandrill = require('mandrill-api/mandrill');
 var mandrill_client = new mandrill.Mandrill('wOw8h_wydGj7qFRkjKJLNQ');
 
-var template_name = "Organiser-Login"
+var template_name = "Results"
 var template_content =[
     {
         "name": "header",
-        "content": "<p>WELL DONE *|FNAME|* you have an drop dead gorgeous accout! Thanks for your business!<p>"    
+        "content": "<h3>Hello *|FNAME|*</h3><h6>*|EMAIL|*</h6>"
+           
+    },
+    {
+        "name": "results",
+        "content": "<p> *|FNAME|* Congratulations and Thank you for your business!You now have a login for the most prestigious Endurance Event site around!<p>"    
     },
     {
         "name": "welcome",
-        "content": "<p>WELL DONE *|FNAME|* you have a trial period of 60 days!<p>"    
+        "content": "<p>WELL DONE *|LNAME|* !<p>"    
     },
     {
        "name": "greeting",
-       "content": "<h2>The Lads<h2>"  
+       "content": "Regards<br>Stampede Team"  
     },
     {"name": "footer",
         "content":"copyright@2016 SBAR Endurance Running team"
@@ -23,12 +28,12 @@ var template_content =[
 ];
 
 var message = {
-    "subject": "New Login Organiser",
+    "subject": "New Login113 ",
     "from_email": "paul@stampede.co.uk",
     "from_name": "Paul Crosby",
     "to": [{
             "email": "king_bing@hotmail.com",
-            "name": "Bobbbbbbby",
+            "name": "Dave Dobbin",
             "type": "to"
         }],
     "headers": {
@@ -51,13 +56,13 @@ var message = {
     "merge_language": "mailchimp",
     "global_merge_vars": [{
             "name": "fname",
-            "content": "Bob"
+            "content": ""
         }],
     "merge_vars": [{
             "rcpt": "paul@stampede.co.uk",
             "vars": [{
                     "name": "lname",
-                    "content": "smith"
+                    "content": ""
                 }]
         }],
     "tags": [
