@@ -2,19 +2,21 @@ var express    = require("express");
 var app        = express();
 var mandrill = require('mandrill-api/mandrill');
 var mandrill_client = new mandrill.Mandrill('wOw8h_wydGj7qFRkjKJLNQ');
+var template_name = ""
+var subject = template_name
 
 
-
-function sendMail(template_name, template_content, to_variable){
+function sendMail(template_name, template_content, recipient){
     console.log(template_name)
     console.log(template_content)
-    console.log(to_variable)
+    console.log(recipient)
+    console.log(subject)
 
     var message = {
-        "subject": "New Login115 ",
+        "subject": subject,
         "from_email": "paul@stampede.co.uk",
         "from_name": "Paul Crosby",
-        "to": to_variable,
+        "to": recipient,
         "headers": {
             "Reply-To": "message.reply@example.com"
         },
@@ -33,20 +35,20 @@ function sendMail(template_name, template_content, to_variable){
         "return_path_domain": null,
         "merge": true,
         "merge_language": "mailchimp",
-        "global_merge_vars": [{
-                "name": "merge1",
-                "content": "<h1>MERGING</h1>"
-            }],
-        "merge_vars": [{
-                "rcpt": "paul@stampede.co.uk",
-                "vars": [{
-                        "name": "lname",
-                        "content": ""
-                    }]
-            }],
-        "tags": [
-            "password-resets"
-        ],
+        // "global_merge_vars": [{
+        //         "name": "merge1",
+        //         "content": "<h1>MERGING</h1>"
+        //     }],
+        // "merge_vars": [{
+        //         "rcpt": "paul@stampede.co.uk",
+        //         "vars": [{
+        //                 "name": "lname",
+        //                 "content": ""
+        //             }]
+        //     }],
+        // "tags": [
+        //     "password-resets"
+        // ],
         // "subaccount": "customer-123",
         // "google_analytics_domains": [
         //     "example.com"
@@ -77,14 +79,7 @@ function sendMail(template_name, template_content, to_variable){
     // var send_at = "example send_at";
     mandrill_client.messages.sendTemplate({"template_name":template_name,"template_content":template_content,"message": message, "async": async, "ip_pool": ip_pool }, function(result) {
         console.log(result);
-        /*
-        [{
-                "email": "recipient.email@example.com",
-                "status": "sent",
-                "reject_reason": "hard-bounce",
-                "_id": "abc123abc123abc123abc123abc123"
-            }]
-        */
+        
     }, function(e) {
         // Mandrill returns the error as an object with name and message keys
         console.log('A mandrill error occurred: ' + e.name + ' - ' + e.message);
@@ -93,9 +88,11 @@ function sendMail(template_name, template_content, to_variable){
 
 }
 
-sendMail('Results', [ ], [{
-                "email": "king_bing@hotmail.com",
-                "name": "Dave Dobbin",
+var address = {email: "paul71crosby@gmail.com", name: "Paul"}
+
+sendMail("Login", [{"name":"firstname", "content" : "BILLY-BOB"}], [{
+                "email": address.email,
+                "name": address.name,
                 "type": "to"
             }])
 
@@ -103,7 +100,7 @@ sendMail('Results', [ ], [{
 
 // {"name":"header", "content":"Run",}
 
-var template_name = "Index"
+
 
 
 /*var template_content =[
