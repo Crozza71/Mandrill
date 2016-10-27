@@ -2,11 +2,11 @@ var express    = require("express");
 var app        = express();
 var mandrill = require('mandrill-api/mandrill');
 var mandrill_client = new mandrill.Mandrill('wOw8h_wydGj7qFRkjKJLNQ');
-var template_name = ""
-var subject = template_name
+
 
 
 function sendMail(template_name, template_content, recipient){
+    var subject = template_name
     console.log(template_name)
     console.log(template_content)
     console.log(recipient)
@@ -34,45 +34,7 @@ function sendMail(template_name, template_content, recipient){
         "signing_domain": null,
         "return_path_domain": null,
         "merge": true,
-        "merge_language": "mailchimp",
-        // "global_merge_vars": [{
-        //         "name": "merge1",
-        //         "content": "<h1>MERGING</h1>"
-        //     }],
-        // "merge_vars": [{
-        //         "rcpt": "paul@stampede.co.uk",
-        //         "vars": [{
-        //                 "name": "lname",
-        //                 "content": ""
-        //             }]
-        //     }],
-        // "tags": [
-        //     "password-resets"
-        // ],
-        // "subaccount": "customer-123",
-        // "google_analytics_domains": [
-        //     "example.com"
-        // ],
-        // "google_analytics_campaign": "message.from_email@example.com",
-        // "metadata": {
-        //     "website": "www.example.com"
-        // },
-        // "recipient_metadata": [{
-        //         "rcpt": "recipient.email@example.com",
-        //         "values": {
-        //             "user_id": 123456
-        //         }
-        //     }],
-        // "attachments": [{
-        //         "type": "text/plain",
-        //         "name": "myfile.txt",
-        //         "content": "ZXhhbXBsZSBmaWxl"
-        //     }],
-        // "images": [{
-        //         "type": "image/png",
-        //         "name": "IMAGECID",
-        //         "content": "ZXhhbXBsZSBmaWxl"
-        //     }]
+        "merge_language": "mailchimp"
     };
     var async = false;
     var ip_pool = "Main Pool";
@@ -88,117 +50,85 @@ function sendMail(template_name, template_content, recipient){
 
 }
 
-var address = {email: "paul71crosby@gmail.com", name: "Paul"}
+var address = {email: "paul71crosby@gmail.com", name: "Paul"};
+template_name= "Login";
+if (template_name == "Login"){
+    sendMail("Login", [{"name":"greeting", "content" : "Big boys"},              
+                        ], 
+                        [{
+                    "email": address.email,
+                    "name": address.name,
+                    "type": "to"
+                }])
 
-sendMail("Login", [{"name":"firstname", "content" : "BILLY-BOB"}], [{
+} else if (template_name == "Organiser-Login"){
+
+    sendMail(template_name, [{"name":"greeting", "content" : "the lads"},
+                        {"name" :"header","content":""},
+                         {"name" :"firstname","content" :"blah blah blah"},
+                         {"name" : "welcome" , "content" :""},
+                         {"name" :"footer" , "content" :""}               
+                        ], 
+                        [{
+                    "email": address.email,
+                    "name": address.name,
+                    "type": "to"
+                }])
+
+} else if  (template_name == "Index"){  
+
+    sendMail(template_name, [{"name":"greeting", "content" : "the lads"},
+                     {"name" :"ID","content":""},
+                    {"name" :"header","content":""},
+                     {"name" :"firstname","content" :"blah blah blah"},
+                     {"name" : "welcome" , "content" :""},
+                     {"name" :"footer" , "content" :""}               
+                    ], 
+                    [{
                 "email": address.email,
                 "name": address.name,
                 "type": "to"
             }])
+   } else if (template_name == "Results"){
+
+        sendMail(template_name, [{"name":"greeting", "content" : "the lads"},
+                            {"name" :"header","content":""},
+                             {"name" :"firstname","content" :"blah blah blah"},
+                             {"name" : "welcome" , "content" :""},
+                             {"name" :"footer" , "content" :""}               
+                            ], 
+                            [{
+                        "email": address.email,
+                        "name": address.name,
+                        "type": "to"
+                    }])
+      }  else if (template_name == "Smash it"){
+            sendMail(template_name, [{"name":"greeting", "content" : "the lads"},
+                                {"name" :"header","content":""},
+                                 {"name" :"firstname","content" :"blah blah blah"},
+                                 {"name" : "welcome" , "content" :""},
+                                 {"name" :"footer" , "content" :""}               
+                                ], 
+                                [{
+                            "email": address.email,
+                            "name": address.name,
+                            "type": "to"
+                        }])
+    }        else {
+                sendMail(template_name, [{"name":"greeting", "content" : "the lads"},
+                                    {"name" :"header","content":""},
+                                     {"name" :"firstname","content" :"blah blah blah"},
+                                     {"name" : "welcome" , "content" :""},
+                                     {"name" :"footer" , "content" :""}               
+                                    ], 
+                                    [{
+                                "email": address.email,
+                                "name": address.name,
+                                "type": "to"
+                            }])
+};
 
 
-
-// {"name":"header", "content":"Run",}
-
-
-
-
-/*var template_content =[
-    
-    {
-        "name": "header",
-        "content": "<h3>Hello *|FNAME|*</h3><h6>*|EMAIL|*</h6>"
-           
-    },
-    {
-        "name": "results",
-        "content": "<p> *|FNAME|* Congratulations you completed the event!<p>"    
-    },
-    {
-        "name": "welcome",
-        "content": "<p>WELL DONE *|LNAME|* !<p>"    
-    },
-    {
-        "name": "login",
-        "content": "<p>Congratulations and Thank you for your business!You now have a login for the most prestigious Endurance Event site around! </p>"    
-    },
-    {
-       "name": "greeting",
-       "content": "the lads"  
-    },
-    {"name": "footer",
-        "content":"copyright@2016 SBAR Endurance Running team"
-    },
-    {"name":"imhereandnotused",
-        content:"notshown"}
-];
-
-var message = {
-    "subject": "New Login114 ",
-    "from_email": "paul@stampede.co.uk",
-    "from_name": "Paul Crosby",
-    "recipient": [{
-            "email": "king_bing@hotmail.com",
-            "name": "Harry Howard",
-            "type": "to"
-        }],
-    "headers": {
-        "Reply-To": "message.reply@example.com"
-    },
-    "important": false,
-    "track_opens": null,
-    "track_clicks": null,
-    "auto_text": null,
-    "auto_html": null,
-    "inline_css": null,
-    "url_strip_qs": null,
-    "preserve_recipients": null,
-    "view_content_link": null,
-    "bcc_address": null,
-    "tracking_domain": null,
-    "signing_domain": null,
-    "return_path_domain": null,
-    "merge": true,
-    "merge_language": "mailchimp",
-    "global_merge_vars": [{
-            "name": "merge1",
-            "content": "<h1>MERGING</h1>"
-        }],
-    "merge_vars": [{
-            "rcpt": "paul@stampede.co.uk",
-            "vars": [{
-                    "name": "lname",
-                    "content": ""
-                }]
-        }],
-    "tags": [
-        "password-resets"
-    ],
-    // "subaccount": "customer-123",
-    // "google_analytics_domains": [
-    //     "example.com"
-    // ],
-    // "google_analytics_campaign": "message.from_email@example.com",
-    // "metadata": {
-    //     "website": "www.example.com"
-    // },
-    // "recipient_metadata": [{
-    //         "rcpt": "recipient.email@example.com",
-    //         "values": {
-    //             "user_id": 123456
-    //         }
-    //     }],
-    // "attachments": [{
-    //         "type": "text/plain",
-    //         "name": "myfile.txt",
-    //         "content": "ZXhhbXBsZSBmaWxl"
-    //     }],
-    // "images": [{
-    //         "type": "image/png",
-    //         "name": "IMAGECID",
-    //         "content": "ZXhhbXBsZSBmaWxl"
-    //     }]
-};*/
 var async = false;
 var ip_pool = "Main Pool";
 // var send_at = "example send_at";
