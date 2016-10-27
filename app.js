@@ -51,9 +51,12 @@ function sendMail(template_name, template_content, recipient){
 }
 
 var address = {email: "paul71crosby@gmail.com", name: "Paul"};
-template_name= "Login";
+
+template_name= "Results";
+
+
 if (template_name == "Login"){
-    sendMail("Login", [{"name":"greeting", "content" : "Big boys"},              
+    sendMail("Login", [{"name":"firstname", "content" : "Big Bad Bob"},              
                         ], 
                         [{
                     "email": address.email,
@@ -63,11 +66,8 @@ if (template_name == "Login"){
 
 } else if (template_name == "Organiser-Login"){
 
-    sendMail(template_name, [{"name":"greeting", "content" : "the lads"},
-                        {"name" :"header","content":""},
-                         {"name" :"firstname","content" :"blah blah blah"},
-                         {"name" : "welcome" , "content" :""},
-                         {"name" :"footer" , "content" :""}               
+    sendMail(template_name, [{"name":"organisername", "content" : "Old mutual"},
+                        {"name" :"header","content":"Thank you for supporting Stampede"},
                         ], 
                         [{
                     "email": address.email,
@@ -77,12 +77,7 @@ if (template_name == "Login"){
 
 } else if  (template_name == "Index"){  
 
-    sendMail(template_name, [{"name":"greeting", "content" : "the lads"},
-                     {"name" :"ID","content":""},
-                    {"name" :"header","content":""},
-                     {"name" :"firstname","content" :"blah blah blah"},
-                     {"name" : "welcome" , "content" :""},
-                     {"name" :"footer" , "content" :""}               
+    sendMail(template_name, [{"name":"greeting", "content" : "the lads"},              
                     ], 
                     [{
                 "email": address.email,
@@ -91,11 +86,7 @@ if (template_name == "Login"){
             }])
    } else if (template_name == "Results"){
 
-        sendMail(template_name, [{"name":"greeting", "content" : "the lads"},
-                            {"name" :"header","content":""},
-                             {"name" :"firstname","content" :"blah blah blah"},
-                             {"name" : "welcome" , "content" :""},
-                             {"name" :"footer" , "content" :""}               
+        sendMail(template_name, [{"name" :"footer" , "content" :"STAMPEDE2016"}               
                             ], 
                             [{
                         "email": address.email,
@@ -103,11 +94,7 @@ if (template_name == "Login"){
                         "type": "to"
                     }])
       }  else if (template_name == "Smash it"){
-            sendMail(template_name, [{"name":"greeting", "content" : "the lads"},
-                                {"name" :"header","content":""},
-                                 {"name" :"firstname","content" :"blah blah blah"},
-                                 {"name" : "welcome" , "content" :""},
-                                 {"name" :"footer" , "content" :""}               
+            sendMail(template_name, [{"name":"firstname", "content" : "Dave"},   
                                 ], 
                                 [{
                             "email": address.email,
@@ -115,11 +102,8 @@ if (template_name == "Login"){
                             "type": "to"
                         }])
     }        else {
-                sendMail(template_name, [{"name":"greeting", "content" : "the lads"},
-                                    {"name" :"header","content":""},
-                                     {"name" :"firstname","content" :"blah blah blah"},
-                                     {"name" : "welcome" , "content" :""},
-                                     {"name" :"footer" , "content" :""}               
+                sendMail(template_name, [{"name":"firstname", "content" : "Colin"},
+                                    {"name" :"greeting","content":"the Usual Suspects"}
                                     ], 
                                     [{
                                 "email": address.email,
