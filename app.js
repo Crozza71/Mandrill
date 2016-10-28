@@ -52,7 +52,7 @@ function sendMail(template_name, template_content, recipient){
 
 var address = {email: "paul71crosby@gmail.com", name: "Paul"};
 
-template_name= "Try our run";
+template_name= "Organiser-Login";
 
 
 if (template_name == "Login"){
