@@ -56,7 +56,7 @@ template_name= "Organiser-Login";
 
 
 if (template_name == "Login"){
-    sendMail("Login", [{"name":"firstname", "content" : "Peter"},              
+    sendMail("Login", [{"name":"firstname", "content" : "Bart"},              
                         ], 
                         [{
                     "email": address.email,
@@ -67,8 +67,7 @@ if (template_name == "Login"){
 } else if (template_name == "Organiser-Login"){
 
     sendMail(template_name, [{"name":"organisername", "content" : "SAB Miller"},
-                              {"name":"firstname", "content" : "David" },
-                        {"name" :"header","content":"Thank you for supporting Stampede"},
+                        {"name" :"login","content":"A big Thank you for supporting Stampede"},
                         ], 
                         [{
                     "email": address.email,
