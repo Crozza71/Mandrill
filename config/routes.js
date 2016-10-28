@@ -20,8 +20,8 @@ var users = [{
   interests: "Swimming, Cycling"
 }];
 
-app.get('/index', function (req, res) {
-  res.render('index');
+app.get('/', function (req, res) {
+  res.send('index');
 
 });
 
@@ -49,3 +49,7 @@ app.post('/results', function(req, res) {
   res.render('results');
 });
 
+
+app.listen(3000, function () {
+  console.log(' listening on port 3000!');
+});

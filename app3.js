@@ -69,8 +69,8 @@ mandrill('/messages/send', {
 //fake data
 var users = [{
   id: 0,
-  user: "bob@gmail.com",
-  name: "Bob",
+  email: "bob@gmail.com",
+  firstname: "Bob",
   interests: "Cycling, Marathons"
 },
 {

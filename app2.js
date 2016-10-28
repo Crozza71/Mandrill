@@ -6,12 +6,12 @@ mandrill_client = new mandrill.Mandrill('wOw8h_wydGj7qFRkjKJLNQ');
 var name = "Bob Template";
 var from_email = "paul@stampede.co.uk";
 var from_name = "Paul";
-var subject = "Results Template";
-var code = "<div>example code</div>";
-var text = "Example Results";
+var subject = " Template";
+var code = "<div>you smashed the difficulty level!</div>";
+var text = "Results";
 var publish = false;
 var labels = [
-    "example-label"
+    "Champion-label"
 ];
 mandrill_client.templates.add({"name": name, "from_email": from_email, "from_name": from_name, "subject": subject, "code": code, "text": text, "publish": publish, "labels": labels}, function(result) {
     console.log(result);

@@ -2,7 +2,7 @@ var express    = require("express");
 var app        = express();
 var mandrill = require('mandrill-api/mandrill');
 var mandrill_client = new mandrill.Mandrill('wOw8h_wydGj7qFRkjKJLNQ');
-
+// var routes     = require (__dirname+"/config/routes")
 
 
 function sendMail(template_name, template_content, recipient){
@@ -52,11 +52,11 @@ function sendMail(template_name, template_content, recipient){
 
 var address = {email: "paul71crosby@gmail.com", name: "Paul"};
 
-template_name= "Results";
+template_name= "Try our run";
 
 
 if (template_name == "Login"){
-    sendMail("Login", [{"name":"firstname", "content" : "Big Bad Bob"},              
+    sendMail("Login", [{"name":"firstname", "content" : "Peter"},              
                         ], 
                         [{
                     "email": address.email,
@@ -66,7 +66,8 @@ if (template_name == "Login"){
 
 } else if (template_name == "Organiser-Login"){
 
-    sendMail(template_name, [{"name":"organisername", "content" : "Old mutual"},
+    sendMail(template_name, [{"name":"organisername", "content" : "SAB Miller"},
+                              {"name":"firstname", "content" : "David" },
                         {"name" :"header","content":"Thank you for supporting Stampede"},
                         ], 
                         [{
@@ -86,7 +87,8 @@ if (template_name == "Login"){
             }])
    } else if (template_name == "Results"){
 
-        sendMail(template_name, [{"name" :"footer" , "content" :"STAMPEDE2016"}               
+        sendMail(template_name, [{"name" :"footer" , "content" :"STAMPEDE2016"},
+        {"name" :"results","content":"Well done you BEAUTY!"},              
                             ], 
                             [{
                         "email": address.email,
@@ -94,7 +96,8 @@ if (template_name == "Login"){
                         "type": "to"
                     }])
       }  else if (template_name == "Smash it"){
-            sendMail(template_name, [{"name":"firstname", "content" : "Dave"},   
+            sendMail(template_name, [{"name":"firstname", "content" : "Peter"}, 
+              {"name":"raceLocation", "content" : "Try Berlin, Brighton, Blackpool or anything with a B"},
                                 ], 
                                 [{
                             "email": address.email,
@@ -103,7 +106,8 @@ if (template_name == "Login"){
                         }])
     }        else {
                 sendMail(template_name, [{"name":"firstname", "content" : "Colin"},
-                                    {"name" :"greeting","content":"the Usual Suspects"}
+                                    {"name" :"greeting","content":"the Usual Suspects"},
+                                    {"name" :"3up","content":"www.virginmoneylondonmarathon.com  Try the kids event"},
                                     ], 
                                     [{
                                 "email": address.email,
@@ -117,12 +121,87 @@ var async = false;
 var ip_pool = "Main Pool";
 // var send_at = "example send_at";
 
+// var users = [{
+//   id: 0,
+//   user: "bob@gmail.com",
+//   name: "Bob",
+//   interests: "Cycling, Marathons"
+// },{
+//   id: 1,
+//   user: "Nancy",
+//   name: "Nancy@hotmail.com",
+//   interests: "Swimming"
+// },
+// {
+//   id: 2,
+//   user: "Dave",
+//   name: "dave@pro.com",
+//   interests: "Swimming, Cycling"
+// }];
+
+
 
 app.set("views", __dirname + "/views");
 app.set("view engine", "ejs");
 
+app.get('/index', function (req, res) {
+  res.render('index');
+
+});
+
+app.get('/login', function (req, res) {
+  res.render('login');
+
+});
+
+app.get('/organiser-login', function (req, res) {
+  res.render('organiser-login');
+});
+
+app.get('/results', function (req, res) {
+  res.render('results');
+});
+
+app.get('/smash-it', function (req, res) {
+  res.render('smash-it');
+});
+
+app.get('/try-our-run', function (req, res) {
+  res.render('try-our-run');
+});
 
 
+app.post('/index', function(req, res) {
+  res.render('index');
+});
+
+app.post('/Login', function (req, res) {
+  res.render('login');
+
+});
+
+app.post('/organiser-login', function (req, res) {
+  res.render('organiser-login');
+});
+
+app.post('/results', function(req, res) {
+  res.render('results');
+});
+
+app.post('/smash-it', function (req, res) {
+  res.render('smash-it');
+});
+
+app.post('/try-our-run', function (req, res) {
+  res.render('try-our-run');
+});
+
+
+
+// app.use(routes);
+app.listen(3000, function () {
+  console.log(' listening on port 3000!');
+});
 
 
 
